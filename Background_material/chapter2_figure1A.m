@@ -21,4 +21,4 @@ imagesc(R); colormap(hot(100)); colorbar
 xlabel('order j'); ylabel('Ritz values');
 %title('distance of Ritz value to closest eigenvalue')
 
-mypdf('2-1A',0.71, 1)
+mypdf('figure1A',0.71, 1)

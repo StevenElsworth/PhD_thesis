@@ -19,7 +19,7 @@ for j = 1:m
 end
 imagesc(R); colormap(hot(100)); colorbar
 xlabel('order j'); ylabel('Ritz values');
-mypdf('2-1B',0.71, 1)
+%mypdf('figure1B',0.71, 1)
 
 
 mydefaults
@@ -42,4 +42,4 @@ for j = 2:m-1
 end
 imagesc(R); colormap(hot(100)); colorbar
 xlabel('order j'); ylabel('Ritz values');
-mypdf('2-1Bb',0.71, 1)
+mypdf('figure1B',0.71, 1)
