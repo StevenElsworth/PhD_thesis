@@ -42,7 +42,7 @@ plot(evals(6), 'o', 'color', col(4, :), 'MarkerSize', 12, 'LineWidth', 3)
 plot(evals(7), 'o', 'color', col(4, :), 'MarkerSize', 12, 'LineWidth', 3)
 plot(evals(8), 'o', 'color', col(5, :), 'MarkerSize', 12, 'LineWidth', 3)
 plot(evals(9), 'o', 'color', col(5, :), 'MarkerSize', 12, 'LineWidth', 3)
-mypdf('evals', 0.71, 1)
+mypdf('figure1A', 0.71, 1)
 
 figure(2)
 plot(real(evecs(:, 1)), 'k', 'LineWidth', 3)
@@ -55,19 +55,7 @@ plot(real(evecs(:, 6)), 'color', col(4, :), 'LineWidth', 3)
 plot(real(evecs(:, 7)), 'color', col(4, :), 'LineWidth', 3)
 plot(real(evecs(:, 8)), 'color', col(5, :), 'LineWidth', 3)
 plot(real(evecs(:, 9)), 'color', col(5, :), 'LineWidth', 3)
-mypdf('evecs', 0.71, 1)
-
-figure(3)
-plot(real(evecs(:, N)), 'k')
-hold on
-plot(real(evecs(:, N-1)), 'color', col(2, :))
-plot(real(evecs(:, N-2)), 'color', col(2, :))
-plot(real(evecs(:, N-3)), 'color', col(3, :))
-plot(real(evecs(:, N-4)), 'color', col(3, :))
-plot(real(evecs(:, N-5)), 'color', col(4, :))
-plot(real(evecs(:, N-6)), 'color', col(4, :))
-plot(real(evecs(:, N-7)), 'color', col(5, :))
-plot(real(evecs(:, N-8)), 'color', col(5, :))
+mypdf('figure1B', 0.71, 1)
 
 
 % General shape controlled by roots
@@ -93,7 +81,7 @@ hold on
 plot(b1)
 axis([0, 80, 0, 450])
 legend({'noise', 'time series'}, 'Location', 'northoutside', 'Orientation', 'horizontal')
-mypdf('smooth', 0.71, 1)
+mypdf('figure2A', 0.71, 1)
 
 figure(5)
 plot(e)
@@ -101,4 +89,4 @@ hold on
 plot(b2)
 axis([0, 80, 0, 1.05])
 legend({'noise', 'time series'}, 'Location', 'northoutside', 'Orientation', 'horizontal')
-mypdf('noisy', 0.71, 1)
+mypdf('figure2B', 0.71, 1)
