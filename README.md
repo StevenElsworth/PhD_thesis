@@ -5,6 +5,10 @@ Code to recreate figures throughout my PhD thesis.
 This chapter contains no figures.
 
 ## Background material
+![Figure 1A](./Background_material/figure1A.png)
+![Figure 1B](./Background_material/figure1B.png)
+![Figure 2A](./Background_material/figure2A.png)
+![Figure 2B](./Background_material/figure2B.png)
 
 ## Conversions between barycentric, RKFUN, and Newton representations of rational interpolants
 

@@ -13,3 +13,4 @@ set(gcf,'PaperSize',s*[13.2,r*13.2]);
 set(gcf,'PaperPosition',s*[.0,.0,13.2,r*13.2]);
 print(gcf,'-dpdf', fname);
 print(gcf,'-depsc2',fname);
+print(gcf,'-dpng',fname);
