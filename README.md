@@ -13,8 +13,8 @@ This chapter contains no figures.
 ## Conversions between barycentric, RKFUN, and Newton representations of rational interpolants
 
 ## The block rational Arnoldi method
-![Chapter 4, Figure 2A](./figure2A.png)
-![Chapter 4, Figure 2B](./figure2B.png)
+![Chapter 4, Figure 2A](./Block_rational_Arnoldi_method/figure2A.png)
+![Chapter 4, Figure 2B](./Block_rational_Arnoldi_method/figure2B.png)
 
 ## ARMA models via Krylov methods
 ![Chapter 5, Figure 1A](./ARMA_via_Krylov/figure1A.png)
