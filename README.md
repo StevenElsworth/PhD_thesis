@@ -13,12 +13,14 @@ This chapter contains no figures.
 ## Conversions between barycentric, RKFUN, and Newton representations of rational interpolants
 
 ## The block rational Arnoldi method
+![Chapter 4, Figure 2A](./figure2A.png)
+![Chapter 4, Figure 2B](./figure2B.png)
 
 ## ARMA models via Krylov methods
-![Chapter5, Figure 1A](./ARMA_via_Krylov/figure1A.png)
-![Chapter5, Figure 1B](./ARMA_via_Krylov/figure1B.png)
-![Chapter5, Figure 2A](./ARMA_via_Krylov/figure2A.png)
-![Chapter5, Figure 2B](./ARMA_via_Krylov/figure2B.png)
+![Chapter 5, Figure 1A](./ARMA_via_Krylov/figure1A.png)
+![Chapter 5, Figure 1B](./ARMA_via_Krylov/figure1B.png)
+![Chapter 5, Figure 2A](./ARMA_via_Krylov/figure2A.png)
+![Chapter 5, Figure 2B](./ARMA_via_Krylov/figure2B.png)
 
 ## ABBA: adaptive brownian bridge based symbolic aggregation of time series
 See <https://github.com/nla-group/ABBA>.
