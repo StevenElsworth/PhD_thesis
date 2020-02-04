@@ -1,8 +1,5 @@
 clc
 mydefaults
-r = .71;
-s = 5;
-fontsize = 20;
 set(0,'defaulttextinterpreter','latex')
 
 % Import time series, E1 from book, see Example 3.2.3
@@ -76,7 +73,7 @@ plot(75:80, [all_b(75, 3); predictions(:, 3)], 'Color', [0.9290, 0.6940, 0.1250]
 axis([60,80, -0.1, 0.1])
 pbaspect([2 1 1])
 legend([p1, p2, p3], {'investment', 'income', 'consumption'}, ...
-'Interpreter', 'latex', 'Orientation','horizontal', 'Location', 'south')
+'Interpreter', 'latex', 'Location', 'northwest')
 xlabel('timestep', 'Interpreter','latex')
 ylabel('preprocessed time series', 'Interpreter','latex')
 
