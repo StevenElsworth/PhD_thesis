@@ -10,20 +10,20 @@ set(0,'defaulttextinterpreter','latex')
 import = importdata('e1.dat.txt');
 
 orig_b = import.data;
-% Take difference of log of data (removes trend), note first datapoint is 
+% Take difference of log of data (removes trend), note first datapoint is
 % lost due to differencing
 log_b = log(orig_b);
-all_b = diff(log_b); 
+all_b = diff(log_b);
 
 % As p=2, keep the first two observations of differenced series as
 % presampled values. Keep them inside b but do not use for evaluating mean.
-b = all_b(1:75, :); 
+b = all_b(1:75, :);
 mu = mean(b(3:end,:)) % Example 3.3.5, Equation 3.3.20
 
 b = b - ones(length(b),1)*mu; % mean center the time series
 
 % Construct VAR(2) model using block rational Krylov spaces
-A = spdiags([zeros(size(b,1),1),ones(size(b,1),1)],0:1,size(b,1),size(b,1)); 
+A = spdiags([zeros(size(b,1),1),ones(size(b,1),1)],0:1,size(b,1),size(b,1));
 xi_ = inf*ones(1, 2);
 D = zeros(75,75); D(1:73, 1:73) = eye(73);
 param.balance = 0;
@@ -75,10 +75,10 @@ p3 = plot(all_b(1:80, 3), 'Color', [0.9290, 0.6940, 0.1250]);
 plot(75:80, [all_b(75, 3); predictions(:, 3)], 'Color', [0.9290, 0.6940, 0.1250], 'LineStyle', '--')
 axis([60,80, -0.1, 0.1])
 pbaspect([2 1 1])
-legend([p1, p2, p3], {'investment', 'income', 'consumption'}, 'FontSize', ...
-    fontsize, 'Interpreter', 'latex', 'Orientation','horizontal', 'Location', 'south')
-xlabel('timestep', 'FontSize', fontsize, 'Interpreter','latex')
-ylabel('preprocessed time series', 'FontSize', fontsize, 'Interpreter','latex')
+legend([p1, p2, p3], {'investment', 'income', 'consumption'}, ...
+'Interpreter', 'latex', 'Orientation','horizontal', 'Location', 'south')
+xlabel('timestep', 'Interpreter','latex')
+ylabel('preprocessed time series', 'Interpreter','latex')
 
 mypdf('figure2A',0.71, 1)
 
@@ -94,10 +94,9 @@ p3 = plot(orig_b(1:81,3), 'Color', [0.9290, 0.6940, 0.1250]);
 plot(76:81, exp(cumsum([all_b(75,3); predictions(:,3)]) + log_b(75,3)), 'Color', [0.9290, 0.6940, 0.1250], 'LineStyle', '--');
 axis([60, 80, 0, 3000])
 pbaspect([2 1 1])
-legend([p1, p2, p3], {'investment', 'income', 'consumption'}, 'FontSize', ...
-     fontsize, 'Interpreter', 'latex', 'Location', 'northwest')
-xlabel('timestep', 'FontSize', fontsize, 'Interpreter','latex')
-ylabel('original time series', 'FontSize', fontsize, 'Interpreter','latex')
+legend([p1, p2, p3], {'investment', 'income', 'consumption'}, ...
+'Interpreter', 'latex', 'Location', 'northwest')
+xlabel('timestep', 'Interpreter','latex')
+ylabel('original time series', 'Interpreter','latex')
 
 mypdf('figure2B',0.71, 1)
-
