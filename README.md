@@ -1,5 +1,5 @@
 # PhD_thesis
-Code to recreate figures throughout my PhD thesis.
+Code to recreate the figures throughout my PhD thesis.
 
 ## Introduction
 This chapter contains no figures.
@@ -11,6 +11,7 @@ This chapter contains no figures.
 ![Chapter 2, Figure 2B](./Background_material/figure2B.png)
 
 ## Conversions between barycentric, RKFUN, and Newton representations of rational interpolants
+Will be added shortly.
 
 ## The block rational Arnoldi method
 ![Chapter 4, Figure 2A](./Block_rational_Arnoldi_method/figure2A.png)
