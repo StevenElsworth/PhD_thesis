@@ -1,6 +1,14 @@
 Requires the RKToolbox avilable at www.rktoolbox.org
 
-![Figure 1A](./figure1A.png)
-![Figure 1B](./figure1B.png)
-![Figure 2A](./figure2A.png)
-![Figure 2B](./figure2B.png)
+<p align="center">
+  <img title="Figure 1A" width="600" height="460" src="./figure1A.png">
+</p>
+<p align="center">
+  <img title="Figure 1B" width="600" height="460" src="./figure1B.png">
+</p>
+<p align="center">
+  <img title="Figure 2A" width="600" height="460" src="./figure2A.png">
+</p>
+<p align="center">
+  <img title="Figure 2B" width="600" height="460" src="./figure2B.png">
+</p>
