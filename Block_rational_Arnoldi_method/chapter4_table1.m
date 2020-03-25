@@ -18,8 +18,13 @@ A = mmread('Inlet.A');
 B = mmread('Inlet.B');
 C = mmread('Inlet.C');
 E = mmread('Inlet.E');
-% f = @(s) full(C*((s*E - A)\B));
 
+f = @(s) full(C*((s*E - A)\B));
+f0 = 40;
+s = linspace(0, f0, 12 + 11*8);
+for j = 1:length(s) 
+    fs(j, 1:2) = f(1i*s(j)); 
+end
 b = full(A\B);
 
 %% Define  poles
@@ -55,27 +60,79 @@ deflation_tol = 0;
 param.waitbar = 1;
 param.orth = 'CGS';
 param.reorth = 0;
-continuation = {'last', 'ruhe', 'last', 'last', 'ruhe'};
-parallel = {1, 1, 4, 1, 1};
-xi = {xi1, xi1, xi1, xi2, xi2};
-xi_txt = {'xi1', 'xi1', 'xi1',' xi2', 'xi2'};
-mpV = {mpV1, mpV1, mpV1, mpV2, mpV2};
+continuation = {'last', 'ruhe', 'last'};
+lstyle = {'--', ':', '-.'};
+parallel = {1, 1, 4};
 
-for i = 1:5
+cmatrix  = [0, 0.4470, 0.7410; 0.85, 0.3250, 0.0980; 0.9290, 0.6940, 0.1250];
+
+figure(1)
+p{1} = plot(s, abs(fs(:,1)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
+hold on
+pp{1} = plot(s, abs(fs(:,2)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
+xlabel('s'), ylabel('gain |H(is)|')
+
+for i = 1:3
     param.continuation = continuation{i};
     param.p = parallel{i};
-    [V, K, H, outt] = rat_krylov(A, E, b, xi{i}, param);
+    [V, K, H, outt] = rat_krylov(A, E, b, xi1, param);
     R = outt.R;
     D = fminsearch(@(x) cond(R*diag(x)), ones(size(R, 2), 1), ...
     struct('Display','off'));
     nrm = norm(V'*V - eye(size(V,2)));
-    spc = norm(mpV{i}*(mpV{i}'*V)- V);
+    spc = norm(mpV1*(mpV1'*V)- V);
 
     fprintf(strcat('   Continuation vector: ', strcat(continuation{i},'\n')))
-    fprintf(strcat('   Poles: ', strcat(xi_txt{i}, '\n')))
+    fprintf('   Poles: xi1 \n')
     fprintf(strcat('   Parallelisation: ', strcat(num2str(parallel{i}), '\n')))
     fprintf('   Cond number (scaled): %.3e\n', cond(R*diag(D)))
     fprintf('   Orthogonality check:  %.3e\n', nrm)
     fprintf('   norm(VpVp^*V - V)_2: %.3e\n', spc)
     fprintf('\n')
+    
+    % Evaluate and plot reduced transfer function.
+    Em = V'*E*V; Am = V'*A*V; Bm = V'*B; Cm = C*V;
+    for j = 1:length(s)
+        fsm(j, 1:2) = (Cm*((1i*s(j)*Em - Am)\Bm));
+    end
+    fsm
+    p{i+1} = plot(s, abs(fsm(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
+    pp{i+1} = plot(s, abs(fsm(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
 end
+legend([p{1}, p{2}, p{3}, p{4}], {'full model', 'last', 'ruhe', 'last\_4'})
+mypdf('xi1')
+
+figure(2)
+p{1} = plot(s, abs(fs(:,1)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
+hold on
+pp{1} = plot(s, abs(fs(:,2)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
+xlabel('s'), ylabel('gain |H(is)|')
+
+for i = 1:3
+    param.continuation = continuation{i};
+    param.p = parallel{i};
+    [V, K, H, outt] = rat_krylov(A, E, b, xi2, param);
+    R = outt.R;
+    D = fminsearch(@(x) cond(R*diag(x)), ones(size(R, 2), 1), ...
+    struct('Display','off'));
+    nrm = norm(V'*V - eye(size(V,2)));
+    spc = norm(mpV2*(mpV2'*V)- V);
+
+    fprintf(strcat('   Continuation vector: ', strcat(continuation{i},'\n')))
+    fprintf('   Poles: xi2 \n')
+    fprintf(strcat('   Parallelisation: ', strcat(num2str(parallel{i}), '\n')))
+    fprintf('   Cond number (scaled): %.3e\n', cond(R*diag(D)))
+    fprintf('   Orthogonality check:  %.3e\n', nrm)
+    fprintf('   norm(VpVp^*V - V)_2: %.3e\n', spc)
+    fprintf('\n')
+
+    % Evaluate and plot reduced transfer function.
+    Em = V'*E*V; Am = V'*A*V; Bm = V'*B; Cm = C*V;
+    for j = 1:length(s)
+        fsm(j, 1:2) = (Cm*((1i*s(j)*Em - Am)\Bm));
+    end
+    p{i+1} = plot(s, abs(fsm(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
+    pp{i+1} = plot(s, abs(fsm(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
+end
+legend([p{1}, p{2}, p{3}, p{4}], {'full model', 'last', 'ruhe', 'last\_4'})
+mypdf('xi2')
