@@ -67,11 +67,8 @@ parallel = {1, 1, 4};
 cmatrix  = [0, 0.4470, 0.7410; 0.85, 0.3250, 0.0980; 0.9290, 0.6940, 0.1250];
 
 figure(1)
-p{1} = plot(s, abs(fs(:,1)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
 hold on
-pp{1} = plot(s, abs(fs(:,2)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
-xlabel('s'), ylabel('gain |H(is)|')
-
+xlabel('s'), ylabel('Error: |H(is) - Hm(is)|')
 for i = 1:3
     param.continuation = continuation{i};
     param.p = parallel{i};
@@ -95,19 +92,15 @@ for i = 1:3
     for j = 1:length(s)
         fsm(j, 1:2) = (Cm*((1i*s(j)*Em - Am)\Bm));
     end
-    fsm
-    p{i+1} = plot(s, abs(fsm(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
-    pp{i+1} = plot(s, abs(fsm(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
+    p{i} = plot(s, abs(fsm(:,1) - fs(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
+    pp{i} = plot(s, abs(fsm(:,2) - fs(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
 end
-legend([p{1}, p{2}, p{3}, p{4}], {'full model', 'last', 'ruhe', 'last\_4'})
-mypdf('xi1')
+legend([p{1}, p{2}, p{3}], {'last', 'ruhe', 'last\_4'})
+mypdf('xxi1')
 
 figure(2)
-p{1} = plot(s, abs(fs(:,1)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
 hold on
-pp{1} = plot(s, abs(fs(:,2)), 'k-', 'Color', [0.7,0.7,0.7], 'LineWidth', 4);
-xlabel('s'), ylabel('gain |H(is)|')
-
+xlabel('s'), ylabel('Error: |H(is) - Hm(is)|')
 for i = 1:3
     param.continuation = continuation{i};
     param.p = parallel{i};
@@ -131,8 +124,8 @@ for i = 1:3
     for j = 1:length(s)
         fsm(j, 1:2) = (Cm*((1i*s(j)*Em - Am)\Bm));
     end
-    p{i+1} = plot(s, abs(fsm(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
-    pp{i+1} = plot(s, abs(fsm(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
+    p{i} = plot(s, abs(fsm(:,1) - fs(:,1)), lstyle{i}, 'Color', cmatrix(i,:));
+    pp{i} = plot(s, abs(fsm(:,2) - fs(:,2)), lstyle{i}, 'Color', cmatrix(i,:));
 end
-legend([p{1}, p{2}, p{3}, p{4}], {'full model', 'last', 'ruhe', 'last\_4'})
-mypdf('xi2')
+legend([p{1}, p{2}, p{3}], {'last', 'ruhe', 'last\_4'})
+mypdf('xxi2')
